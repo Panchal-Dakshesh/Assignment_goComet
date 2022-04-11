@@ -82,7 +82,6 @@ def fetch_articles(tag, links):
             
             # insert related tags to db
             if a :
-                # print('inside if')
                 insert_tags(a.get_text())
                     
             title = soup.find('h1', class_="pw-post-title")

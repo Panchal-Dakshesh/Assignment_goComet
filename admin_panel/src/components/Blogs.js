@@ -218,6 +218,8 @@ export default class Admin extends Component {
 
     // sets the modal content after every click
     showDetails(index) {
+        document.getElementById('root').style.filter = 'blur(5px)';
+        console.log('parsed css', document.getElementById('root'))
         const blog = this.state.search_results[index];
         this.setState({ 
             currentTitle: blog[1],
@@ -234,16 +236,19 @@ export default class Admin extends Component {
 
     // hides blog modal
     hideModal = () => {
+        document.getElementById('root').style.filter = 'blur(0px)';
         this.setState({isModalOpen: false});
     }
     
     // hides search modal
     hideSearchModal = () => {
         this.setState({isSearchHistoryOpen: false});
+        document.getElementById('root').style.filter = 'blur(0px)';
     }
 
     // opens search modal onclick
     showSearchHistory() {
+        document.getElementById('root').style.filter = 'blur(5px)';
         this.setState({isSearchHistoryOpen: true});
     }
 
@@ -267,19 +272,16 @@ export default class Admin extends Component {
             <div className="main">
             <span id="title">Medium Crawler</span> {/* App name */}
             <form className="main-search" onSubmit={(e) => {e.preventDefault(); this.searchTag()}}>
-                <input onChange={this.handleEvent} className="inp" autoFocus type="text" autoComplete="off" placeholder="Input a tag to search medium" name="search" id="search" />
-                <button type="submit" className="btn btn-outline-success">
+                <input onChange={this.handleEvent} className="inp" autoFocus type="text" autoComplete="off" placeholder="Search Tag" name="search" id="search" />
+                <button type="submit" className="btn">
                     <i className="fa fa-search"></i>
                 </button>
+                <button type="button" className="btn margin-history" onClick={() => {this.showSearchHistory()}}>
+                    <i className="fa fa-history"></i>
+                </button>
             </form>
-            <h2 className="text-center mt-5 search-results" hidden={this.state.tag ? false : true}>Results for <span style={{textDecoration: "underline"}}>"{this.state.tag}"</span> will appear below</h2>
             </div>
-            <div className="count" onClick={() => {this.showSearchHistory()}}>
-                <span className="search-history-count">
-                    <i className="fa fa-history" id="history-icon"></i>
-                    {this.state.search_history.length}
-                </span>
-            </div>
+            
             <div id={this.state.show} className="content">
                 <ol className="blogs">
                     {

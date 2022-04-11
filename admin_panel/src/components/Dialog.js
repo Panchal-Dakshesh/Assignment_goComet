@@ -1,7 +1,6 @@
 import React from 'react';
 import {Button, Modal} from 'react-bootstrap';
 const BlogModal = (props) => {
-    console.log(props);
     return (
         <Modal show={props.isModalOpen} onHide={props.closeCartModal} dialogClassName="cartModal modal-lg">
             <Modal.Header closeButton>
@@ -11,9 +10,9 @@ const BlogModal = (props) => {
                 {
                     <>
                         <span>
-                            <h5>Title: {props.title}</h5>
-                            <h6>Author: {props.author}</h6>
-                            <p>{props.read}</p>
+                            <h5 className='black'>Title: {props.title}</h5>
+                            <h6 className='black'>Author: {props.author}</h6>
+                            <p className='black'>{props.read}</p>
                         </span>
                         <p>
                             {props.blog}
